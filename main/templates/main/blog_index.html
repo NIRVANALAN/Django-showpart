@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Starter Template for Bootstrap</title>
+    <!-- BS core css-->
+    <link rel="stylesheet" href="">
+</head>
+<body>
+<form action="/main/create/" method="post">
+    {% csrf_token %}
+    <table>{{ form }}</table>
+    <input type="submit">
+</form>
+<hr>
+{% for blog in  blog_list %}
+<h2 id="demo">{{ blog.title | title }}</h2>
+    <h3>{{ blog.timestamp | timesince }}</h3>
+    <p>
+    {{ blog.body }}
+    </p>
+    <hr>
+{% endfor %}
+<form action=""></form>
+<br>
+<div>
+    <vedio></vedio>
+</div>
+<h2 align="center" name="end">
+    -----End-----
+</h2>
+</body>
+</html>

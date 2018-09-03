@@ -1,0 +1,294 @@
+﻿{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Home</title>
+    <!---css--->
+    <link href="{% static "main/css/bootstrap.css"%}" rel='stylesheet' type='text/css'/>
+    <link href="{% static "main/css/style.css" %}" rel='stylesheet' type='text/css'/>
+    <!---css--->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!---js--->
+    <script src="{% static "main/js/jquery-1.11.1.min.js" %}"></script>
+    <script src="{% static "main/js/bootstrap.js" %}"></script>
+    <!---js--->
+    <!--web-fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic'
+          rel='stylesheet' type='text/css'>
+    <!--//web-fonts-->
+    <script src="{% static "main/js/responsiveslides.min.js" %}"></script>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
+    <!--JS for animate-->
+    <link href="{% static "main/css/animate.css" %}" rel="stylesheet" type="text/css" media="all">
+    <script src="{% static "main/js/wow.min.js" %}"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!--//end-animate-->
+
+</head>
+<body>
+<!---header--->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header wow fadeInLeft animated animated" data-wow-delay="0.4s">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h2><a class="navbar-brand" href="/main/index">Rhinestone Eyes</a>
+            </h2>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right wow fadeInRight animated animated" data-wow-delay="0.4s">
+                <li class="active"><a class="nav-in" href="/main/index"><span data-letters="Home">Home</span></a></li>
+                <li><a class="nav-in" href="/main/about/"><span data-letters="About us">About us</span></a></li>
+                <li><a class="nav-in" href="/main/class/"><span data-letters="Classes">Technique</span></a></li>
+                <li><a class="nav-in" href="/main/trainers"><span data-letters="Trainers">Draw</span></a></li>
+                <li><a class="nav-in" href="/main/codes"><span data-letters="Codes">Show</span></a></li>
+                <li><a class="nav-in" href="/main/contact"><span data-letters="Contact">Contact</span></a></li>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<!---banner--->
+<div class="banner-section">
+    <div class="container">
+        <div class="slider">
+            <div class="callbacks_container">
+                <ul class="rslides" id="slider">
+                    <li>
+                        <div class="caption">
+                            <div class="col-md-6 cap-left wow fadeInDownBig animated animated" data-wow-delay="0.4s">
+                                <h3>项目内容</h3>
+                            </div>
+                            <div class="col-md-6 cap-right wow fadeInUpBig animated animated" data-wow-delay="0.4s">
+                                <p>我们项目着重于使用行人重识别技术得出多镜头视频中每个行人的轨迹，对其进行关联分析、异常检测等数据分析，并将行人轨迹使用热力图的形式进行交互式的可视化</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="caption">
+                            <div class="col-md-6 cap-left wow fadeInDownBig animated animated" data-wow-delay="0.4s">
+                                <h3>目标市场</h3>
+
+                            </div>
+                            <div class="col-md-6 cap-right wow fadeInUpBig animated animated" data-wow-delay="0.4s">
+                                <p>
+                                    目标市场是拥有多个具有摄像头的子场景的大型场景，如商场，景区、游乐园、展览馆等。以及针对于需要通过改善商品进货方向，商品关联等等来提升利润的商家以及需要进行客户需求分析以及异常行为分析等等的商家。</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!---banner--->
+<!---content--->
+<div class="content">
+    <!---train--->
+    <div class="train w3-agile">
+        <div class="container">
+            <h2>关于项目</h2>
+            <div class="train-grids">
+                <div class="col-md-3 train-grid wow fadeInLeft animated animated" data-wow-delay="0.4s">
+                    <div class="train-top hvr-bounce-to-right">
+                        <div class="train-img">
+                            <img src="{% static "main/images/e1.png"%}"/>
+                        </div>
+                        <h4>项目概述</h4>
+                        <p>我们项目着重于使用行人重识别技术得出多镜头视频中每个行人的轨迹，对其进行关联分析、异常检测等数据分析，并将行人轨迹使用热力图的形式进行交互式的可视化</p>
+                    </div>
+                </div>
+                <div class="col-md-3 train-grid wow fadeInDownBig animated animated" data-wow-delay="0.4s">
+                    <div class="train-top hvr-bounce-to-right">
+                        <div class="train-img">
+                            <img src="{% static "main/images/e2.png"%}"/>
+                        </div>
+                        <h4>市场特征</h4>
+                        <p>产品适用于所有对客户轨迹行为分析监测存在需求的企业单位。不同的单位需求存在差异，因此产品设计为个性化服务。不同单位对技术支持程度不同，因此提供灵活的技术支持与后期方案。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 train-grid wow fadeInUpBig animated animated" data-wow-delay="0.4s">
+                    <div class="train-top hvr-bounce-to-right">
+                        <div class="train-img">
+                            <img src="{% static "main/images/e3.png"%}"/>
+                        </div>
+                        <h4>项目优势 </h4>
+                        <p>
+                            其他基于射频技术的替代方法（例如阿里的无人超市），成本昂贵，不利于普及，需要额外的硬件基础。我们项目提供的方案，充分利用数据，成本低廉，无需额外的硬件基础，可以大面积应用于市场。也契合了时下智慧城市的相关政策。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 train-grid wow fadeInRight animated animated" data-wow-delay="0.4s">
+                    <div class="train-top hvr-bounce-to-right">
+                        <div class="train-img">
+                            <img src="{% static "main/images/e4.png"%}"/>
+                        </div>
+                        <h4>项目前景</h4>
+                        <p>
+                            市面上大量的视频数据没有被充分利用，随着5G网络，和计算机计算能力的提升，大数据和神经网络的发展，对于视频数据的更多开发利用是必然趋势。市面上拥有多个具有摄像头的子场景的大型场景，如商场，景区、游乐园、展览馆等，急需一项技术来充分利用视频监控，来为他们的营销策略、安全异常检测、展台摆放策略、货架摆放策略，轨迹推荐引导。</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <h2>关于产品</h2>
+            <div class="train-grids">
+                <div class="col-md-3 train-grid wow fadeInLeft animated animated" data-wow-delay="0.4s">
+                    <div class="train-top hvr-bounce-to-right">
+                        <div class="train-img">
+                            <img src="{% static "main/images/e5.png"%}"/>
+                        </div>
+                        <h4>包装</h4>
+                        <p>产品将做为一个应用软件进入市场，可以完成进行各种数据的分析工作。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 train-grid wow fadeInDownBig animated animated" data-wow-delay="0.4s">
+                    <div class="train-top hvr-bounce-to-right">
+                        <div class="train-img">
+                            <img src="{% static "main/images/e6.png"%}"/>
+                        </div>
+                        <h4>服务</h4>
+                        <p>在服务的方面会做到尽善尽美，软件可以根据用户的需求进行不断的调整，保证使用的便捷性与舒适性。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 train-grid wow fadeInUpBig animated animated" data-wow-delay="0.4s">
+                    <div class="train-top hvr-bounce-to-right">
+                        <div class="train-img">
+                            <img src="{% static "main/images/e7.png"%}"/>
+                        </div>
+                        <h4>品牌</h4>
+                        <p> 作为本团队第一次合作进行的产品，会将其做到最好，形成品牌效应，为以后的产品打下良好的基础。形成我们团队自己的品牌。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 train-grid wow fadeInRight animated animated" data-wow-delay="0.4s">
+                    <div class="train-top hvr-bounce-to-right">
+                        <div class="train-img">
+                            <img src="{% static "main/images/e8.png"%}"/>
+                        </div>
+                        <h4>产品</h4>
+                        <p>
+                            产品着重于使用行人重识别技术得出多镜头视频中每个行人的轨迹，对其进行关联分析、异常检测等数据分析，并将行人轨迹使用热力图的形式进行交互式的可视化，并对各种数据进行分析，包括可以进行用户需求定制的分析。</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!---train--->
+    <div class="fit-section w3l-layouts">
+        <div class="container">
+            <div class="fit-grids">
+                <div class="col-md-4 fit-grid wow fadeInDownBig animated animated" data-wow-delay="0.4s">
+                    <div class="fit-left hvr-bounce-to-bottom">
+                        <h3>竞争优势</h3>
+                        <p>当今世界，随着数据量的增加与人民消费水平的提高，越来越多的商业公司希望通过对大量数据的分析服务于商业目的，本项目就是在这样的大环境下诞生的。该项目产品以前沿的行人重识别技术(Person
+                            reidentification)为技术核心，结合丰富的数据挖掘算法，有着无可替代的核心技术优势，贴近实际应用需求，有着广泛的市场和商机。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fit-grid wow fadeInUpBig animated animated" data-wow-delay="0.4s">
+                    <img src="{% static "main/images/f2.jpg"%}" class="img-responsive" alt=""/>
+                </div>
+                <div class="col-md-4 fit-grid wow fadeInRight animated animated" data-wow-delay="0.4s">
+                    <div class="fit-right hvr-bounce-to-right">
+                        <p>
+                            同时，该项目有着十分清晰的目标群体与产品定位，丰富的应用场景，所有拥有多个具有摄像头的子场景的大型场景，如商场，景区、游乐园、展览馆都可以成为我们产品的落地的温床。模块化的设计使得我们后期能够更为方便的进行项目功能的更新与迭代，使得能够以增量化的方式不断推进，服务于越来越广泛的应用场景和更多的客户。同时，我们的项目能够得到国家政策的大力支持，在“大众创业，万众创新”的口号下和国家大力推进人工智能、数据挖掘领域的相关产品研发的浪潮下，我们的项目有着得天独厚的竞争优势。此外，我们已经开发出产品的原型，使得本项目拥有极佳的前期优势，为后期产品的可靠性、稳定性和可拓展性奠定了基石。</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="fit-grids1">
+                <div class="col-md-8 fit-grid2 wow fadeInLeft animated animated" data-wow-delay="0.4s">
+                    <img src="{% static "main/images/f3.jpg"%}" class="img-responsive" alt=""/>
+                </div>
+                <div class="col-md-4 fit-grid1 hvr-bounce-to-bottom wow fadeInDownBig animated animated"
+                     data-wow-delay="0.4s">
+                    <div class="fit-right">
+                        <h3>专业优势</h3>
+                        <p>在专业领域，项目开发团队有着丰富的数据挖掘与机器学习项目经验，曾开发Top1 acc 93%的re-id原型产品，在爬虫，JAVA
+                            EE，GUI开发等多领域有着较竞争对手更为丰富的项目经验和更深厚的技术实力，有充足的能力将我们的产品进行问题修复，后台维护与版本迭代。</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="fit-grids wow fadeInLeft animated animated" data-wow-delay="0.4s">
+                <div class="col-md-4 fit-grid">
+                    <img src="{% static "main/images/f1.jpg"%}" class="img-responsive" alt=""/>
+                </div>
+                <div class="col-md-4 fit-grid wow fadeInDownBig animated animated" data-wow-delay="0.4s">
+                    <div class="fit-left hvr-bounce-to-bottom">
+                        <h3>团队优势</h3>
+                        <p>
+                            高度的凝聚力使得团队的每一名成员都做到绝对的专注，业务的单一性与明确的客户群体使得我们能够获得比竞争对手更为高效的执行力。团队的小巧与缺乏规模往往能够让内部沟通的更加快速和顺畅，从而更好地提升客户满意度。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fit-grid wow fadeInRight animated animated" data-wow-delay="0.4s">
+                    <div class="fit-right hvr-bounce-to-right">
+                        <p>而且，去除不必要的东西能够降低产品的成本和复杂度，在更好的满足客户需求的同时拥有较大公司更快的产品迭代速度。更为重要的是，本团队有着极强的团队合作能力与自上而下的严格的执行力。</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="fit-grids1">
+                <div class="col-md-4 fit-grid1 hvr-bounce-to-bottom wow fadeInDownBig animated animated"
+                     data-wow-delay="0.4s">
+                    <div class="fit-right">
+                        <h3>学校支持</h3>
+                        <p>作为很多创业创新项目的发源地，北京邮电大学为我们提供了丰富的资源和技术指导，能够让产品团队没有后顾之忧，无需担心资金与相关设施的短缺，这是很多项目组无法具备的先天优势。</p>
+                    </div>
+                </div>
+                <div class="col-md-8 fit-grid2 wow fadeInUpBig animated animated" data-wow-delay="0.4s">
+                    <img src="{% static "main/images/f4.jpg"%}" class="img-responsive" alt=""/>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="tlinks">Collect from <a href="http://www.cssmoban.com/">网页模板</a></div>
+</div>
+
+<!---footer--->
+<!--copy-->
+<div class="copy-section wow fadeInDownBig animated animated" data-wow-delay="0.4s">
+    <div class="container">
+        <div class="social-icons">
+            <a href="#"><i class="icon"></i></a>
+            <a href="#"><i class="icon1"></i></a>
+            <a href="#"><i class="icon2"></i></a>
+            <a href="#"><i class="icon3"></i></a>
+        </div>
+    </div>
+</div>
+<!--copy-->
+</body>
+</html>

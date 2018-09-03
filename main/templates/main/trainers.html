@@ -6,10 +6,95 @@
     <!---css--->
     <link href="{% static "main/css/bootstrap.css" %}" rel='stylesheet' type='text/css'/>
     <link href="{% static "main/css/style.css" %}" rel='stylesheet' type='text/css'/>
+    <link href="{% static "main/css/Heatmap Animation Example_files/commons.css" %}">
+    <link href="{% static "main/css/Heatmap Animation Example_files/example-commons.css" %}">
+    <link href="{% static "main/css/Heatmap Animation Example_files/prism.css" %}">
     <!---css--->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content=""/>
+{# js #}
+
+    <style>
+        #share {
+            display: none;
+            float: right;
+            font-size: 14px;
+            line-height: 170%
+        }
+
+        .demo-wrapper {
+            position: relative
+        }
+
+        .timeline-wrapper {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 30px;
+            background: #fff;
+            transition: 1s ease all;
+            border-radius: 4px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, .65)
+        }
+
+        .heatmap-timeline {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            left: 80px;
+            height: 100%
+        }
+
+        .heatmap-timeline .line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 15px;
+            height: 2px;
+            background: #d7d7d7
+        }
+
+        .heatmap-timeline .time-point.active {
+            background: #000
+        }
+
+        .heatmap-timeline .time-point {
+            position: absolute;
+            background: #fff;
+            border: 2px solid #272727;
+            width: 8px;
+            height: 8px;
+            border-radius: 100%;
+            cursor: pointer;
+            top: 15px;
+            transform: translateX(-50%) translateY(-50%)
+        }
+
+        .heatmap-timeline .time-point:hover {
+            box-shadow: 0 0 5px black
+        }
+
+        .timeline-wrapper button {
+            position: absolute;
+            outline: none;
+            color: #000;
+            background: #f2f2f2;
+            width: 65px;
+            height: 100%;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px
+        }
+
+        .heatmap-timeline .time-point.active {
+            background: #000
+        }
+    </style>
+    <script src="{% static "main/js/extract.js"%}"></script>
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -28,8 +113,8 @@
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic'
           rel='stylesheet' type='text/css'>
     <!--//web-fonts-->
-    <link href="{% static "main/css/galleryeffect.css"%}" rel="stylesheet" type="text/css" media="all"/>
-    <link href="{%  static "main/css/style.css"%}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{% static "main/css/galleryeffect.css" %}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{% static "main/css/style.css" %}" rel="stylesheet" type="text/css" media="all"/>
     <!--JS for animate-->
     <link href="{% static "main/css/animate.css" %}" rel="stylesheet" type="text/css" media="all">
     <script src="{% static "main/js/wow.min.js" %}"></script>
@@ -58,9 +143,9 @@
             <ul class="nav navbar-nav navbar-right wow fadeInRight animated animated" data-wow-delay="0.4s">
                 <li class="active"><a class="nav-in" href="/main/index"><span data-letters="Home">Home</span></a></li>
                 <li><a class="nav-in" href="/main/about/"><span data-letters="About us">About us</span></a></li>
-                <li><a class="nav-in" href="/main/class/"><span data-letters="Classes">Technique</span></a></li>
-                <li><a class="nav-in" href="/main/trainers"><span data-letters="Trainers">Draw</span></a></li>
-                <li><a class="nav-in" href="/main/codes"><span data-letters="Codes">Show</span></a></li>
+                <li><a class="nav-in" href="/main/class/"><span data-letters="Technique">Technique</span></a></li>
+                <li><a class="nav-in" href="/main/trainers"><span data-letters="Draw">Draw</span></a></li>
+                <li><a class="nav-in" href="/main/codes"><span data-letters="Show">Show</span></a></li>
                 <li><a class="nav-in" href="/main/contact"><span data-letters="Contact">Contact</span></a></li>
 
             </ul>
@@ -74,6 +159,29 @@
     </div>
 </div>
 
+<div class="wrapper">
+    <h2>Demo</h2>
+    <div class="demo-wrapper">
+
+        <div class="heatmap" style="position: relative;">
+            <canvas class="heatmap-canvas" width="834" height="399"
+                    style="position: absolute; left: 0px; top: 0px;"></canvas>
+        </div>
+        <div class="timeline-wrapper">
+            <button>play</button>
+            <div class="heatmap-timeline">
+            </div>
+        </div>
+    </div>
+    <div class="demo-controls">
+        <button class="trigger-refresh btn" data-fps="60">Set speed to 60 frames per second</button>
+        <button class="trigger-refresh btn" data-fps="30">Set speed to 30 frames per second</button>
+        <button class="trigger-refresh btn" data-fps="10">Set speed to 10 frames per second</button>
+        <button class="trigger-refresh btn" data-fps="5">Set speed to 5 frames per second</button>
+        <button class="trigger-refresh btn" data-fps="1">Set speed to 1 frame per second</button>
+        <br style="clear:both">
+    </div>
+</div>
 <!--copy-->
 <div class="copy-section wow fadeInDownBig animated animated" data-wow-delay="0.4s">
     <div class="container">
@@ -86,5 +194,7 @@
     </div>
 </div>
 <!--copy-->
+<script src="{% static "main/js/heatmap.min.js" %}"></script>
+
 </body>
 </html>

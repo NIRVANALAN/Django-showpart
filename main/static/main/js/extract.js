@@ -28,7 +28,6 @@ var arrayJson = [{
 //   })
 // }
 var info = [];
-
 function extractInfo() {
     // function camerasInfo(name,x,y,id){
     //     this.name = name;
@@ -37,7 +36,7 @@ function extractInfo() {
     //     this.id = id;
     // }
 
-    $.getJSON('js/info.json', function (data) {
+    $.getJSON('./main/static/main/js/info.json', function (data) {
         // info = data;
         // info = $.extend(true, [], data["camera"]);
         $.each(data["camera"], function (i, item) {
@@ -103,7 +102,7 @@ function extractDotTrace() {
     var frame_points = [];
     var max = 0;
 
-    $.getJSON('js/visudata_dotbook.json', function (data) {
+    $.getJSON('<STATIC_PATH>/js/visudata_dotbook.json', function (data) {
         var width = 840;
         var height = 600;
         for (var p in data) {
@@ -289,8 +288,8 @@ window.onload = function () {
     var heatmapInstance = h337.create(
         {
             container: document.querySelector('.heatmap'),
-            radius:10,
-            // backgroundColor: 'rgba(0.5,0.5,0.5,.95)',
+            // radius:20,
+            backgroundColor: 'rgba(0.5,0.5,0.5,.95)',
             // gradient: {
             //     // enter n keys between 0 and 1 here
             //     // for gradient color customization

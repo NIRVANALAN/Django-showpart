@@ -11,7 +11,7 @@ body {
   }
 }
 
-.wrapper { width:840px; position:relative; margin:auto; max-width:90%; }
+.wrapper { width:840px;position:relative; margin:auto; max-width:90%; }
 
 .breadcrumb-trail {
   list-style:none;

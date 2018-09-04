@@ -77,9 +77,9 @@
     <div class="map-grids w3-agile">
         <div class="col-md-8 map-middle wow fadeInRight animated animated" data-wow-delay="0.4s">
             <form action="#" method="post">
+                {% csrf_token %}
                 <input type="text" name="name" placeholder="Name" required="">
                 <input type="text" name="email" class="email" placeholder="Email" required="">
-
                 <textarea name="text area" placeholder="Message"></textarea>
                 <input type="submit" value="Send">
             </form>

@@ -217,6 +217,7 @@ window.onload = function () {
     };
     var max_len = 30;
     AnimationPlayer.prototype = {
+        c_frame:0,
         init: function () {
             var dataLen = this.data.length;
             this.wrapperEl.innerHTML = '';
@@ -255,6 +256,10 @@ window.onload = function () {
             var dataLen = this.data.length;
             this.playButton.innerText = 'pause';
             this.interval = setInterval(function () {
+                if (this.currentFrame>this.dest_frame){
+                    clearInterval(this.interval);
+                    this.playButton.innerText = 'play';
+                }
                 this.setFrame(++this.currentFrame % dataLen);
             }.bind(this), this.animationSpeed);
         }, stop: function () {

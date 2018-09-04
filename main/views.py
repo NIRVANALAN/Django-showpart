@@ -58,6 +58,22 @@ def file_down(request):
 	return response
 
 
+def trace_dot_data_down(request):
+	file = open('main/static/main/json/visudata_dotbook.json', 'rb')
+	response = FileResponse(file)
+	response['Content-Type'] = 'application/octet-stream'
+	response['Content-Disposition'] = 'attachment;filename="visudata_dotbook.json"'
+	return response
+
+
+def trace_path_data_down(request):
+	file = open('main/static/main/json/visudata_pathbook.json', 'rb')
+	response = FileResponse(file)
+	response['Content-Type'] = 'application/octet-stream'
+	response['Content-Disposition'] = 'attachment;filename="visudata_pathbook.json"'
+	return response
+
+
 def upload(request):
 	if request.method == 'POST':
 		form = UserForm(request.POST, request.FILES)
@@ -77,22 +93,3 @@ def upload(request):
 	else:
 		form = UserForm()
 	return render(request, "main/register.html", {'form': form})
-
-# def load_file(request):
-# if request.method = ''
-
-# def download(request):
-# 	def file_iterator(file_name, chunk_size=512):
-# 		with open(file_name) as f:
-# 			while True:
-# 				c = f.read(chunk_size)
-# 				if c:
-# 					yield c
-# 				else:
-# 					break
-#
-# 	filename = 'bm.mp4'
-# 	response = StreamingHttpResponse(file_iterator(filename))
-# 	response['Content-Type'] = 'application/octet-stream'
-# 	response['Content-Disposition'] = 'attachment;filename="{0}"'.format((filename))
-# 	return response

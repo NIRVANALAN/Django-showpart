@@ -35,6 +35,15 @@
         new WOW().init();
     </script>
     <!--//end-animate-->
+    <style>
+        img {
+            width: 80%;
+            height: 80%;
+        }
+        .result {
+            border-top: 20px;
+        }
+    </style>
 
 </head>
 <body>
@@ -71,7 +80,12 @@
         <h2>Show</h2>
     </div>
 </div>
-
+<div style="text-align: center" id="result">
+{#    <h2>Analysis Result</h2>#}
+    <div id="result" style="height: auto;width: auto;">
+        <img src="{% static "main/images/report.jpg" %}" alt="Whoops!" width="1920" height="1080" class="img">
+    </div>
+</div>
 <!--copy-->
 <div class="copy-section wow fadeInDownBig animated animated" data-wow-delay="0.4s">
     <div class="container">

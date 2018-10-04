@@ -14,3 +14,5 @@ Media/
 
 main/migrations/__pycache__/0007_auto_20180823_0908.cpython-36.pyc
 media/
+
+main/__pycache__/

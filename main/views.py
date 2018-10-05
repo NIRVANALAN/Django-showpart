@@ -38,22 +38,8 @@ def codes(request):
 	return render(request, "main/codes.html")
 
 
-def blog_index(request):
-	blog_list = BlogPost.objects.all()[:5]
-	return render(request, 'main/blog_index.html', {'blog_list': blog_list, 'form': blogPostToForm})
-
-
-# archive = lambda req: render_to_response('index.html', {'blog_list': BlogPost.objects.all()[:5]})
-
-
-def create_blog_post(request):
-	if request.method == 'POST':
-		BlogPost(
-			title=request.POST.get('title'),
-			body=request.POST.get('body'),
-			timestamp=datetime.now(),
-		).save()
-	return HttpResponseRedirect('/main/')
+def track(request):
+	return render(request,"main/track.html")
 
 
 def file_down(request):

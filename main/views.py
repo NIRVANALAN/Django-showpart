@@ -1,25 +1,31 @@
+from django.contrib import auth
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
 from django.shortcuts import render, render_to_response
 from django.template import loader, Context
 from django.http import HttpResponse, HttpResponseRedirect, FileResponse
 from main.models import BlogPost, blogPostToForm, UserForm, Media
 from datetime import datetime
-from django.http import StreamingHttpResponse
-from django.views.generic import TemplateView
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 
-# Create your views here.
+@login_required
 def index(request):
 	return render(request, 'main/index.html')
 
 
+@login_required
 def about(request):
 	return render(request, "main/about.html")
 
 
+@login_required
 def contact(request):
 	return render(request, "main/contact.html")
 
 
+@login_required
 def trainers(request):
 	return render(request, "main/trainers.html")
 

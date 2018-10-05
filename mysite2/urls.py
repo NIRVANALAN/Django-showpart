@@ -20,9 +20,8 @@ from django.conf.urls import static
 from django.conf import settings
 from main import views
 import main.urls
+import user.urls
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('main/', include(main.urls))
-    # path('github/',)
-]
+urlpatterns = [path('admin/', admin.site.urls),
+               path('main/', include(main.urls)),
+               path('', include(user.urls))]

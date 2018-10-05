@@ -14,4 +14,5 @@ urlpatterns = [
 	path('trainers/', trainers),
 	path('codes/', codes),
 	path('track/', track),
+	path('success/', success)
 ]

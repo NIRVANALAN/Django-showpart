@@ -4,15 +4,30 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, render_to_response
 from django.template import loader, Context
 from django.http import HttpResponse, HttpResponseRedirect, FileResponse
-from main.models import BlogPost, blogPostToForm, UserForm, Media
+from main.models import *
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+import requests
+import logging
+
+pic_upload_add = 'http://123.206.79.138:8806/picture/upload'
+frame = 1
+sequenceId = '20181005001'
+cameraId = 10
+
+# logging
+logger = logging.getLogger('django')
+logger.info('logger "django" start')
 
 
 @login_required
 def index(request):
 	return render(request, 'main/index.html')
+
+
+def success(request):
+	return render(request, 'main/success.html')
 
 
 @login_required
@@ -39,15 +54,31 @@ def codes(request):
 
 
 def track(request):
-	return render(request,"main/track.html")
+	if request.method == 'POST':
+		form = PicFrom(request.POST, request.FILES)
+		if form.is_valid():
+			# username = form.cleaned_data['user_name']
+			# head_img = form.cleaned_data['headImg']
+			Pic(
+				img=request.FILES.get('img'),
+				time=datetime.now()
+			).save()
+			files = {'file': open('./Media/img/' + request.FILES.get('img').name, 'rb')}
+			response = requests.post(pic_upload_add, data={'frame': frame, 'sequenceId': sequenceId, 'cameraId': cameraId},
+			              files=files)
+			logger.info(response.text)
+			return HttpResponseRedirect('/main/success')
+	else:
+		form = PicFrom()
+	return render(request, "main/track.html", {'form': form})
 
 
-def file_down(request):
-	file = open('collected_static/bm.mp4', 'rb')
-	response = FileResponse(file)
-	response['Content-Type'] = 'application/octet-stream'
-	response['Content-Disposition'] = 'attachment;filename="bm.mp4"'
-	return response
+# def file_down(request):
+# 	file = open('collected_static/bm.mp4', 'rb')
+# 	response = FileResponse(file)
+# 	response['Content-Type'] = 'application/octet-stream'
+# 	response['Content-Disposition'] = 'attachment;filename="bm.mp4"'
+# 	return response
 
 
 def trace_dot_data_down(request):
@@ -68,7 +99,7 @@ def trace_path_data_down(request):
 
 def upload(request):
 	if request.method == 'POST':
-		form = UserForm(request.POST, request.FILES)
+		form = UserUploadForm(request.POST, request.FILES)
 		if form.is_valid():
 			# username = form.cleaned_data['user_name']
 			# head_img = form.cleaned_data['headImg']
@@ -83,5 +114,5 @@ def upload(request):
 			
 			return HttpResponseRedirect('/main/upload')
 	else:
-		form = UserForm()
-	return render(request, "main/register.html", {'form': form})
+		form = UserUploadForm()
+	return render(request, "main/file.html", {'form': form})

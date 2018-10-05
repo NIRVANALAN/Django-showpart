@@ -26,6 +26,52 @@ SECRET_KEY = 'g4$91r79rpd&@v*^#0_uczrv&o)s$--0ncv@0k--&+w9%(vjtd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+LOGGING = {
+	'version': 1,
+	'disable_existing_loggers': False,
+	'filters': {
+		'require_debug_true': {
+			'()': 'django.utils.log.RequireDebugTrue',
+		},  # 针对 DEBUG = True 的情况
+	},
+	'formatters': {
+		'standard': {
+			'format': '%(levelname)s %(asctime)s %(pathname)s %(filename)s %(module)s %(funcName)s %(lineno)d: %(message)s'
+		},  # 对日志信息进行格式化，每个字段对应了日志格式中的一个字段，更多字段参考官网文档，我认为这些字段比较合适，输出类似于下面的内容
+		# INFO 2016-09-03 16:25:20,067 /home/ubuntu/mysite/views.py views.py views get 29: some info...
+	},
+	'handlers': {
+		'mail_admins': {
+			'level': 'ERROR',
+			'class': 'django.utils.log.AdminEmailHandler',
+			'formatter': 'standard'
+		},
+		'file_handler': {
+			'level': 'DEBUG',
+			'class': 'logging.handlers.TimedRotatingFileHandler',
+			'filename': '/maver/Documents/dachuang/code/django.log',
+			'formatter': 'standard'
+		},  # 用于文件输出
+		'console': {
+			'level': 'INFO',
+			'filters': ['require_debug_true'],
+			'class': 'logging.StreamHandler',
+			'formatter': 'standard'
+		},
+	},
+	'loggers': {
+		'django': {
+			'handlers': ['file_handler', 'console'],
+			'level': 'DEBUG',
+			'propagate': True  # 是否继承父类的log信息
+		},  # handlers 来自于上面的 handlers 定义的内容
+		'django.request': {
+			'handlers': ['mail_admins'],
+			'level': 'ERROR',
+			'propagate': False,
+		},
+	}
+}
 
 ALLOWED_HOSTS = []
 
@@ -79,7 +125,7 @@ WSGI_APPLICATION = 'mysite2.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': os.path.join(BASE_DIR,'db.sqlite3'),
+		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 	}
 }
 
@@ -120,10 +166,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 STATICFILES_DIR = (
-	os.path.join(BASE_DIR,'collected_static'),
+	os.path.join(BASE_DIR, 'collected_static'),
 )
-
-
 
 # upload folder
 MEDIA_URL = '/media/'

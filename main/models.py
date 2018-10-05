@@ -13,25 +13,38 @@ class Media(models.Model):
 		return self.username
 
 
-class UserForm(forms.ModelForm):
+class UserUploadForm(forms.ModelForm):
 	class Meta:
 		model = Media
 		exclude = ('time',)
 
 
-class BlogPost(models.Model):
-	title = models.CharField(max_length=50)
-	body = models.TextField()
-	timestamp = models.DateTimeField()
+class Pic(models.Model):
+	img = models.ImageField(upload_to='img')
+	time = models.DateTimeField()
 	
-	class Meta:
-		ordering = ('-timestamp',)
+	def __unicode__(self):
+		return self.img.name
 
 
-class blogPostToForm(forms.ModelForm):
+class PicFrom(forms.ModelForm):
 	class Meta:
-		model = BlogPost
-		exclude = ('timestamp',)
+		model = Pic
+		exclude = ('time',)
+
+# class BlogPost(models.Model):
+# 	title = models.CharField(max_length=50)
+# 	body = models.TextField()
+# 	timestamp = models.DateTimeField()
+#
+# 	class Meta:
+# 		ordering = ('-timestamp',)
+#
+#
+# class blogPostToForm(forms.ModelForm):
+# 	class Meta:
+# 		model = BlogPost
+# 		exclude = ('timestamp',)
 
 
 # class BlogPostForm(forms.Form):
@@ -39,12 +52,12 @@ class blogPostToForm(forms.ModelForm):
 #     body = forms.CharField(widget=forms.Textarea(attrs={'row":3' 'cols': 60}))
 #     timestamp = forms.DateTimeField()
 
-
-class DiaryPost(models.Model):
-	title = models.CharField(max_length=30)
-	participants = models.CharField(max_length=50)
-	body = models.TextField()
-	timestamp = models.DateTimeField()
-	
-	class Meta:
-		ordering = ('-timestamp',)
+#
+# class DiaryPost(models.Model):
+# 	title = models.CharField(max_length=30)
+# 	participants = models.CharField(max_length=50)
+# 	body = models.TextField()
+# 	timestamp = models.DateTimeField()
+#
+# 	class Meta:
+# 		ordering = ('-timestamp',)

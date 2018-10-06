@@ -72,25 +72,46 @@
     </div>
 </div>
 <div class="content">
-<div style="text-align: center;position: relative;top: 30px; bottom: 30px;">
-    <div id="video" name="TrackVideo" style="margin-left: auto;margin-right: auto;">
-        <video controls="controls" src="{% static "main/video/newbx.mp4" %}">
-            Your browser does not support video tag
-        </video>
+    <div style="text-align: center;position: relative;top: 30px; bottom: 30px;">
+        <div id="video" name="TrackVideo" style="margin-left: auto;margin-right: auto;">
+            <video controls="controls" src="{% static "main/video/newbx.mp4" %}">
+                Your browser does not support video tag
+            </video>
+        </div>
+    </div>
+    <div style="position: absolute; left: 50px; bottom: 200px;">
+        <div style="margin-left: auto;margin-right: auto;right: 100px;">
+            <h2>Upload</h2>
+            <form action="/main/track/" method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <table>
+                    {{ form }}
+                </table>
+                <p><input type="submit" value="Submit"></p>
+            </form>
+        </div>
     </div>
 </div>
-<div style="position: absolute; left: 50px; bottom: 200px;">
-    <div style="margin-left: auto;margin-right: auto;right: 100px;">
-        <h2>Upload</h2>
-        <form action="/main/track/" method="POST" enctype='multipart/form-data'>
-            {% csrf_token %}
-            <table>
-                {{ form }}
-            </table>
-            <p><input type="submit" value="Submit"></p>
-        </form>
+<div style="position: absolute;right: 100px;bottom: 200px;">
+    <div>
+
+        <table border="1">
+            <tr>
+                <td>SequenceId</td>
+                <td>cameraId</td>
+                <td>time</td>
+            </tr>
+            {% for datum in data %}
+                <tr>
+                    <td>{{ datum.sequenceId }}</td>
+                    <td>{{ datum.cameraId }}</td>
+                    <td>{{ datum.time }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
     </div>
-</div>
 </div>
 <div class="copy-section wow fadeInDownBig animated animated" data-wow-delay="0.4s"
      style="position: relative; top: 50px;">

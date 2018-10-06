@@ -12,9 +12,11 @@ import requests
 import logging
 
 pic_upload_add = 'http://123.206.79.138:8806/picture/upload'
+pic_upload_andFind = 'http://123.206.79.138:8806/picture/uploadAndFind'
+
 frame = 1
 sequenceId = '20181005001'
-cameraId = 10
+cameraId = 1
 
 # logging
 logger = logging.getLogger('django')
@@ -53,24 +55,30 @@ def codes(request):
 	return render(request, "main/codes.html")
 
 
+data_ = []
+
+
 def track(request):
 	if request.method == 'POST':
 		form = PicFrom(request.POST, request.FILES)
 		if form.is_valid():
 			# username = form.cleaned_data['user_name']
 			# head_img = form.cleaned_data['headImg']
-			Pic(
-				img=request.FILES.get('img'),
-				time=datetime.now()
-			).save()
-			files = {'file': open('./Media/img/' + request.FILES.get('img').name, 'rb')}
-			response = requests.post(pic_upload_add, data={'frame': frame, 'sequenceId': sequenceId, 'cameraId': cameraId},
-			              files=files)
+			# Pic(
+			# 	img=request.FILES.get('img'),
+			# 	time=datetime.now()
+			# ).save()
+			# files = {'file': open('./Media/img/' + request.FILES.get('img').name, 'rb')}
+			# response = requests.post(pic_upload_add, data={'frame': frame, 'sequenceId': sequenceId, 'cameraId': cameraId},
+			#               files=files)
+			response = requests.post(pic_upload_andFind)  # for test
+			global data_
+			data_ = eval(response.text)['data']
 			logger.info(response.text)
 			return HttpResponseRedirect('/main/success')
 	else:
 		form = PicFrom()
-	return render(request, "main/track.html", {'form': form})
+	return render(request, "main/track.html", {'form': form, 'data': data_})
 
 
 # def file_down(request):

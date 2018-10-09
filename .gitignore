@@ -18,3 +18,5 @@ media/
 main/__pycache__/
 user/__pycache__/
 __pycache__/
+/api.md
+/test.py

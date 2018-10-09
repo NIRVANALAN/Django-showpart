@@ -7,6 +7,7 @@
     <link href="{% static "main/css/bootstrap.css" %}" rel='stylesheet' type='text/css'/>
     <link href="{% static "main/css/style.css" %}" rel='stylesheet' type='text/css'/>
     <!---css--->
+    <script src="{% static "main/js/jquery-1.11.1.min.js" %}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content=""/>
@@ -16,7 +17,14 @@
 
     function hideURLbar() {
         window.scrollTo(0, 1);
-    } </script>
+    }
+
+    function switchVideo() {
+        let options = $("#selectCamera option:selected");
+        {#alert(options.val());#}
+        document.getElementById("videoShow").src =options.val();
+    }
+    </script>
     <!---js--->
     <script src="{% static "main/js/jquery-1.11.1.min.js" %}"></script>
     <script src="{% static "main/js/bootstrap.js" %}"></script>
@@ -72,9 +80,20 @@
     </div>
 </div>
 <div class="content">
-    <div style="text-align: center;position: relative;top: 30px; bottom: 30px;">
+    <div id="videos" style="text-align: center;position: relative;top: 30px; bottom: 30px;">
+        <div id="select_video">
+            <form action="">
+                <label for="selectCamera">selectCamera</label>
+                <select name="" id="selectCamera">
+                    <option value="{% static "main/video/box.mp4" %}">Camera1</option>
+                    <option value="{% static "main/video/draw.mp4" %}">Camera2</option>
+                    <option value="{% static "main/video/report.mp4" %}">Camera3</option>
+                </select>
+            </form>
+            <button type="button" onclick="switchVideo()">Choose</button>
+        </div>
         <div id="video" name="TrackVideo" style="margin-left: auto;margin-right: auto;">
-            <video controls="controls" src="{% static "main/video/newbx.mp4" %}">
+            <video id="videoShow" width="960" height="540" controls="controls" src="{% static "main/video/box.mp4" %}">
                 Your browser does not support video tag
             </video>
         </div>

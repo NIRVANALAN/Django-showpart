@@ -2,7 +2,49 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Contact</title>
+    <title>Track</title>
+    <style type="text/css">
+        button {
+        {#width: 130px; /* 宽度 */#}{#height: 40px; /* 高度 */#} border-width: 0px; /* 边框宽度 */
+            border-radius: 3px; /* 边框半径 */
+            background: #1E90FF; /* 背景颜色 */
+            cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+            outline: none; /* 不显示轮廓线 */
+            font-family: Microsoft YaHei, serif; /* 设置字体 */
+            color: white; /* 字体颜色 */
+            font-size: 17px; /* 字体大小 */
+        }
+
+        button:hover {
+            background: #5599FF;
+
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        table td, table th {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+
+        table thead th {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+
+        table tr:nth-child(odd) {
+            background: #fff;
+        }
+
+        table tr:nth-child(even) {
+            background: #F5FAFA;
+        }
+    </style>
     <!---css--->
     <link href="{% static "main/css/bootstrap.css" %}" rel='stylesheet' type='text/css'/>
     <link href="{% static "main/css/style.css" %}" rel='stylesheet' type='text/css'/>
@@ -22,7 +64,7 @@
     function switchVideo() {
         let options = $("#selectCamera option:selected");
         {#alert(options.val());#}
-        document.getElementById("videoShow").src =options.val();
+        document.getElementById("videoShow").src = options.val();
     }
     </script>
     <!---js--->
@@ -80,60 +122,67 @@
     </div>
 </div>
 <div class="content">
-    <div id="videos" style="text-align: center;position: relative;top: 30px; bottom: 30px;">
-        <div id="select_video">
-            <form action="">
-                <label for="selectCamera">selectCamera</label>
-                <select name="" id="selectCamera">
-                    <option value="{% static "main/video/box.mp4" %}">Camera1</option>
-                    <option value="{% static "main/video/draw.mp4" %}">Camera2</option>
-                    <option value="{% static "main/video/report.mp4" %}">Camera3</option>
-                </select>
-            </form>
-            <button type="button" onclick="switchVideo()">Choose</button>
+    <div id="videos"
+         style="text-align: center;position: relative;top: 40px; bottom: 30px; height: 550px; width: 55%;  float: left;">
+        <div id="select_video" style=" position: relative; bottom: 30px; ">
+            <div style="">
+                <form action="">
+                    <label for="selectCamera">selectCamera</label>
+                    <select name="" id="selectCamera">
+                        <option value="{% static "main/video/box.mp4" %}">Camera1</option>
+                        <option value="{% static "main/video/draw.mp4" %}">Camera2</option>
+                        <option value="{% static "main/video/report.mp4" %}">Camera3</option>
+                    </select>
+                    <button type="button" onclick="switchVideo()">Choose</button>
+                </form>
+            </div>
         </div>
-        <div id="video" name="TrackVideo" style="margin-left: auto;margin-right: auto;">
+        <div id="video" name="TrackVideo" style="float: left; ">
             <video id="videoShow" width="960" height="540" controls="controls" src="{% static "main/video/box.mp4" %}">
                 Your browser does not support video tag
             </video>
         </div>
     </div>
-    <div style="position: absolute; left: 50px; bottom: 200px;">
-        <div style="margin-left: auto;margin-right: auto;right: 100px;">
-            <h2>Upload</h2>
-            <form action="/main/track/" method="POST" enctype='multipart/form-data'>
-                {% csrf_token %}
-                <table>
-                    {{ form }}
+    <div id="track" style="float: right;position: relative; top: 40px; height: 550px; width: 40%;">
+        <div style="position: relative; width: 50%;" id="img_upload">
+            <div style="margin-left: auto;margin-right: auto;right: 0px;" id="img_form">
+                <h3 align="center">Upload</h3>
+                <form action="/main/track/" method="POST" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <table>
+                        {{ form }}
+                    </table>
+                    <button value="Submit" type="submit" style="position: relative;left:50%;">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div style="position: relative; top: 30px;" id="report_table" >
+        <h3 align="center">Track Result</h3>
+            <div>
+                <table border="1" class="table">
+                    {% if data %}
+                        <tr>
+                            <td>SequenceId</td>
+                            <td>cameraId</td>
+                            <td>time</td>
+                        </tr>
+                    {% endif %}
+
+                    {% for datum in data %}
+                        <tr>
+                            <td>{{ datum.sequenceId }}</td>
+                            <td>{{ datum.cameraId }}</td>
+                            <td>{{ datum.time }}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
-                <p><input type="submit" value="Submit"></p>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-<div style="position: absolute;right: 100px;bottom: 200px;">
-    <div>
 
-        <table border="1">
-            <tr>
-                <td>SequenceId</td>
-                <td>cameraId</td>
-                <td>time</td>
-            </tr>
-            {% for datum in data %}
-                <tr>
-                    <td>{{ datum.sequenceId }}</td>
-                    <td>{{ datum.cameraId }}</td>
-                    <td>{{ datum.time }}</td>
-                </tr>
-            {% endfor %}
-
-        </table>
-
-    </div>
-</div>
 <div class="copy-section wow fadeInDownBig animated animated" data-wow-delay="0.4s"
-     style="position: relative; top: 50px;">
+     style="position: relative; top: 150px; float: left; width: 1960px;">
     <div class="container">
         <div class="social-icons">
             <a href="#"><i class="icon"></i></a>

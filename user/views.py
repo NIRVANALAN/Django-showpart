@@ -70,11 +70,11 @@ def login(request):
 				return HttpResponseRedirect('/main/index')
 		else:
 			# 登陆失败
-			return render(request, 'users/login.html', {'form': form, 'message': 'Wrong password. Please try again.'})
+			return render(request, 'users/index.html', {'form': form, 'message': 'Wrong password. Please try again.'})
 	
 	else:
 		form = LoginForm()
-		return render(request, 'users/login.html', {'form': form})
+		return render(request, 'users/index.html', {'form': form})
 
 
 def logout(request):

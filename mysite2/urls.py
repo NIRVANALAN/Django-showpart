@@ -18,10 +18,11 @@ from django.urls import path
 from django.conf.urls import include
 from django.conf.urls import static
 from django.conf import settings
-from main import views
 import main.urls
 import user.urls
+import user.views as user_views
 
 urlpatterns = [path('admin/', admin.site.urls),
                path('main/', include(main.urls)),
-               path('', include(user.urls))]
+               path('account/', include(user.urls)),
+               path('', user_views.login)]

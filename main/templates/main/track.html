@@ -143,21 +143,25 @@
             </video>
         </div>
     </div>
-    <div id="track" style="float: right;position: relative; top: 40px; height: 550px; width: 40%;">
-        <div style="position: relative; width: 50%;" id="img_upload">
-            <div style="margin-left: auto;margin-right: auto;right: 0px;" id="img_form">
+    <div id="track" style="float: right;position: relative; top: 40px; height: 550px; width: 40%; display:flex">
+        <div style="position: relative; margin: auto;" id="img_upload">
+            <div style="margin-left: auto;margin-right: auto;" id="img_form">
                 <h3 align="center">Upload</h3>
-                <form action="/main/track/" method="POST" enctype='multipart/form-data'>
-                    {% csrf_token %}
-                    <table>
-                        {{ form }}
-                    </table>
-                    <button value="Submit" type="submit" style="position: relative;left:50%;">Submit</button>
-                </form>
+                <div style="float: left; position: relative; ">
+                    <form action="/main/track/" method="POST" enctype='multipart/form-data'>
+                        {% csrf_token %}
+                        <table>
+                            {{ form }}
+                        </table>
+                        <div style="position: relative; right: 30px;">
+                            <button value="Submit" type="submit" style="position: relative;left:50%;">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div style="position: relative; top: 30px;" id="report_table" >
-        <h3 align="center">Track Result</h3>
+        <div style="position: relative; top: 30px;margin: auto; background-color: #00BBD3" id="report_table">
+            <h3 align="center">Track Result</h3>
             <div>
                 <table border="1" class="table">
                     {% if data %}
@@ -182,7 +186,7 @@
 </div>
 
 <div class="copy-section wow fadeInDownBig animated animated" data-wow-delay="0.4s"
-     style="position: relative; top: 150px; float: left; width: 1960px;">
+     style="position: relative; top: 150px; float: left; width: 100%;">
     <div class="container">
         <div class="social-icons">
             <a href="#"><i class="icon"></i></a>

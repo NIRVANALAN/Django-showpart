@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 import requests
 import logging
 
-pic_upload_add = 'http://123.206.79.138:8806/picture/upload'
+pic_upload_add = 'http://192.168.254.117:8806/picture/uploadAndFind'
 pic_upload_andFind = 'http://123.206.79.138:8806/picture/uploadAndFind'
 
 frame = 1
@@ -64,17 +64,27 @@ def track(request):
 		if form.is_valid():
 			# username = form.cleaned_data['user_name']
 			# head_img = form.cleaned_data['headImg']
-			# Pic(
-			# 	img=request.FILES.get('img'),
-			# 	time=datetime.now()
-			# ).save()
-			# files = {'file': open('./Media/img/' + request.FILES.get('img').name, 'rb')}
-			# response = requests.post(pic_upload_add, data={'frame': frame, 'sequenceId': sequenceId, 'cameraId': cameraId},
-			#               files=files)
-			response = requests.post(pic_upload_andFind)  # for test
+			Pic(
+				img=request.FILES.get('img'),
+				time=datetime.now()
+			).save()
+			files = {'file': open('./Media/img/' + request.FILES.get('img').name, 'rb')}
+			response = requests.post(pic_upload_andFind, data={'startFrame': 0, 'finishFrame': 4, 'sequenceId': sequenceId,
+			                                               'galleryCameraId': 1}, files=files)
+			# response = requests.post(pic_upload_andFind)  # for test
+			# response = requests.post(tmp_utl, data={
+			# 	'startFrame': 0,
+			# 	'finishFrame': 4,
+			# 	'sequenceId': 20181005001,
+			# 	'galleryCameraId': 1
+			# })
 			global data_
-			data_ = eval(response.text)['data']
-			logger.info(response.text)
+			data_ = eval(eval(response.text)['data'])
+			logger.info(data_)
+			'''
+			test output
+			[{'sequenceId': '20181005001', 'cameraId': 1, 'time': '10:38'}, {'sequenceId': '20181005001', 'cameraId': 2, 'time': '1:28'}, {'sequenceId': '20181005001', 'cameraId': 3, 'time': '5:30'}]
+			'''
 			return HttpResponseRedirect('/main/success')
 	else:
 		form = PicFrom()

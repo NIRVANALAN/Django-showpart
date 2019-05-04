@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 import requests
 import logging
+from django.utils import timezone
 
 pic_upload_add = 'http://192.168.254.117:8806/picture/uploadAndFind'
 pic_upload_andFind = 'http://123.206.79.138:8806/picture/uploadAndFind'
@@ -66,7 +67,7 @@ def track(request):
 			# head_img = form.cleaned_data['headImg']
 			Pic(
 				img=request.FILES.get('img'),
-				time=datetime.now()
+				time=timezone.now()
 			).save()
 			files = {'file': open('./Media/img/' + request.FILES.get('img').name, 'rb')}
 			response = requests.post(pic_upload_andFind, data={'startFrame': 0, 'finishFrame': 4, 'sequenceId': sequenceId,

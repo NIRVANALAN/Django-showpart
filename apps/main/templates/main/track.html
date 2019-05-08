@@ -143,8 +143,9 @@
         </div>
     </div>
     <div id="track" style="float: right;position: relative; top: 40px; height: 550px; width: 40%; display:flex">
-        <div style="position: relative; margin: auto;" id="img_upload">
-            <div style="margin-left: auto;margin-right: auto;" id="img_form">
+        <div style="position: relative; margin: auto;border:1px solid #cee3e9;background:#f1f7f9" id="img_upload">
+            <div style="margin-top:10px;border:1px solid #96c2f1;background:#eff7ff
+" id="img_form">
                 <h3 align="center">Upload</h3>
                 <div style="float: left; position: relative; ">
                     <form action="/main/track/" method="POST" enctype='multipart/form-data'>
@@ -174,12 +175,16 @@
                         {% endif %}
 
                         {% for datum in data %}
-                            <tr>
-                                <td>{{ datum.sequenceId }}</td>
-                                <td>{{ datum.cameraId }}</td>
-                                <td>{{ datum.frame }}</td>
-                                <td>{{ datum.similarities }}</td>
-                            </tr>
+                            {% if forloop.counter < 10 %}
+
+                                <tr>
+                                    <td>{{ datum.sequenceId }}</td>
+                                    <td>{{ datum.cameraId }}</td>
+                                    <td>{{ datum.frame }}</td>
+                                    <td>{{ datum.similarities }}</td>
+                                </tr>
+                            {% endif %}
+
                         {% endfor %}
                     </table>
                 </div>

@@ -56,10 +56,11 @@ def codes(request):
 	return render(request, "main/codes.html")
 
 
-data_ = []
+data = []
 
 
 def track(request):
+	_data = None
 	if request.method == 'POST':
 		form = PicFrom(request.POST, request.FILES)
 		if form.is_valid():
@@ -70,26 +71,29 @@ def track(request):
 				time=timezone.now()
 			).save()
 			files = {'file': open('./Media/img/' + request.FILES.get('img').name, 'rb')}
-			response = requests.post(pic_upload_andFind, data={'startFrame': 0, 'finishFrame': 4, 'sequenceId': sequenceId,
-			                                               'galleryCameraId': 1}, files=files)
+			# response = requests.post(pic_upload_andFind,
+			#                          data={'startFrame': 0, 'finishFrame': 4, 'sequenceId': sequenceId,
+			#                                'galleryCameraId': 1}, files=files)
 			# response = requests.post(pic_upload_andFind)  # for test
+			
 			# response = requests.post(tmp_utl, data={
 			# 	'startFrame': 0,
 			# 	'finishFrame': 4,
 			# 	'sequenceId': 20181005001,
 			# 	'galleryCameraId': 1
 			# })
-			global data_
-			data_ = eval(eval(response.text)['data'])
-			logger.info(data_)
+			# data_ = eval(eval(response.text)['data'])
+			# logger.info(data_)
+			global data
+			data = eval(open('apps/main/res.txt').readline())
 			'''
 			test output
-			[{'sequenceId': '20181005001', 'cameraId': 1, 'time': '10:38'}, {'sequenceId': '20181005001', 'cameraId': 2, 'time': '1:28'}, {'sequenceId': '20181005001', 'cameraId': 3, 'time': '5:30'}]
+			{"sequenceId": "20190508001", "cameraId": 1, "boxes": "[663, 71, 859, 696, 0]", "frame": 4110, "similarities": 0.6661713832802965}
 			'''
 			return HttpResponseRedirect('/main/success')
 	else:
 		form = PicFrom()
-	return render(request, "main/track.html", {'form': form, 'data': data_})
+	return render(request, "main/track.html", {'form': form, 'data': data})
 
 
 # def file_down(request):

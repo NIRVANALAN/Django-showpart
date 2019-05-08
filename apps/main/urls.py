@@ -11,7 +11,7 @@ urlpatterns = [
 	path('upload/', upload),
 	path('class/', class_router),
 	path('contact/', contact),
-	path('trainers/', trainers),
+	path('trainers/', visuService),
 	path('codes/', codes),
 	path('track/', track),
 	path('success/', success)

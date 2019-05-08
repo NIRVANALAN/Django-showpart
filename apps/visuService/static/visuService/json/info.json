@@ -1,1 +1,11 @@
-{"camera": [{"id": 3, "name": "bGLfSTVjhguUjOt", "x": 3, "y": 3}, {"id": 2, "name": "18SsnGDBlvLXFIi", "x": 2, "y": 2}, {"id": 1, "name": "Y5ny8V5ytqAnDUb", "x": 1, "y": 1}, {"id": 4, "name": "Ll6wIIWVkYsyzcu", "x": 4, "y": 4}], "interval_time": 1}
+{
+  "camera": [
+    { "name": "electric_cooker","x": 6.801, "y": 2.58, "id": 1 },
+    { "name": "induction_cooker", "x": 1.99, "y": 0.53285, "id": 2 },
+    { "name": "water_heater", "x": 3.1157, "y": 3.399609, "id": 3 },
+    { "name": "iron_pan", "x": 0.78, "y": 2.25, "id": 4 },
+    { "name": "ventilator", "x": 4.94616, "y": 3.338511, "id": 5 },
+    { "name": "microwave", "x": 3.74, "y": 2.05, "id": 6 }
+  ],
+  "interval_time": 1
+}

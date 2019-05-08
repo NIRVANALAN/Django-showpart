@@ -219,6 +219,8 @@
 </div>
 <!--copy-->
 <script>
+    {#import * as $ from "./jquery";#}
+
     var packJson = {
         name: 'Larry',
         password: '123'
@@ -258,7 +260,7 @@
         //     this.id = id;
         // }
 
-        $.getJSON('{% static "main/json/info.json" %}', function (data) {
+        $.getJSON('{% static "visuService/json/info.json" %}', function (data) {
             // info = data;
             // info = $.extend(true, [], data["camera"]);
             $.each(data["camera"], function (i, item) {
@@ -295,7 +297,7 @@
     function extractCameraInfo() {
         var camera_info = [];
         $.ajaxSettings.async = false;
-        $.getJSON('{% static "main/json/info.json" %}', function (result) {
+        $.getJSON('{% static "visuService/json/info.json" %}', function (result) {
             $.each(result["camera"], function (index, info) {
                 camera_info.push(info);
             })
@@ -327,8 +329,8 @@
         {#    var point = {x:camera_info[i].x*ratio,y:camera_info[i].y*ratio,value:5};#}
         {#    frame_points.push([point]);#}
 
-
-        $.getJSON('{% static "main/json/visudata_dotbook.json" %}', function (data) {
+{#{% static "main/json/dotbook.json" %}#}
+        $.getJSON('{% static "visuService/json/dotbook.json" %}', function (data) {
             var width = 940;
             var height = 600;
             for (var p in data) {
@@ -360,7 +362,7 @@
         var number = 0;
         var path_debug = [];
 
-        $.getJSON('{% static "main/json/visudata_pathbook.json" %}', function (data) {
+        $.getJSON('{% static "visuService/json/pathbook.json" %}', function (data) {
             // alert(data[1302]['(\'2\', \'5\')']);
             // alert(data[10000]['(\'4\', \'6\')']);
             for (var p in data) {

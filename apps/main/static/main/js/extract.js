@@ -102,7 +102,7 @@ function extractDotTrace() {
     var frame_points = [];
     var max = 0;
 
-    $.getJSON('<STATIC_PATH>/js/visudata_dotbook.json', function (data) {
+    $.getJSON('<STATIC_PATH>/js/dotbook.json', function (data) {
         var width = 840;
         var height = 600;
         for (var p in data) {
@@ -129,7 +129,7 @@ function extractPathTrace() {
     var tmp;
     var path_debug = [];
 
-    $.getJSON('js/visudata_pathbook.json', function (data) {
+    $.getJSON('js/pathbook.json', function (data) {
         // alert(data[1302]['(\'2\', \'5\')']);
         // alert(data[10000]['(\'4\', \'6\')']);
         for (var p in data) {

@@ -44,8 +44,8 @@ def contact(request):
 
 
 @login_required
-def trainers(request):
-	return render(request, "main/trainers.html")
+def visuService(request):
+	return render(request, "main/visu.html")
 
 
 def class_router(request):
@@ -93,7 +93,7 @@ def track(request):
 
 
 # def file_down(request):
-# 	file = open('collected_static/bm.mp4', 'rb')
+# 	file = open('static/bm.mp4', 'rb')
 # 	response = FileResponse(file)
 # 	response['Content-Type'] = 'application/octet-stream'
 # 	response['Content-Disposition'] = 'attachment;filename="bm.mp4"'
@@ -101,18 +101,18 @@ def track(request):
 
 
 def trace_dot_data_down(request):
-	file = open('main/static/main/json/visudata_dotbook.json', 'rb')
+	file = open('main/static/main/json/dotbook.json', 'rb')
 	response = FileResponse(file)
 	response['Content-Type'] = 'application/octet-stream'
-	response['Content-Disposition'] = 'attachment;filename="visudata_dotbook.json"'
+	response['Content-Disposition'] = 'attachment;filename="dotbook.json"'
 	return response
 
 
 def trace_path_data_down(request):
-	file = open('main/static/main/json/visudata_pathbook.json', 'rb')
+	file = open('main/static/main/json/pathbook.json', 'rb')
 	response = FileResponse(file)
 	response['Content-Type'] = 'application/octet-stream'
-	response['Content-Disposition'] = 'attachment;filename="visudata_pathbook.json"'
+	response['Content-Disposition'] = 'attachment;filename="pathbook.json"'
 	return response
 
 

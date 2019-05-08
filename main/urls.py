@@ -13,5 +13,6 @@ urlpatterns = [
 	path('class/', class_router),
 	path('contact/', contact),
 	path('trainers/', trainers),
-	path('codes/', codes)
+	path('codes/', codes),
+	path('paint/', paint),
 ]

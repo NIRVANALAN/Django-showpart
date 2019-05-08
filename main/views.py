@@ -36,6 +36,9 @@ def blog_index(request):
 	blog_list = BlogPost.objects.all()[:5]
 	return render(request, 'main/blog_index.html', {'blog_list': blog_list, 'form': blogPostToForm})
 
+def paint(request):
+	return render(request, 'main/paint.html')
+
 
 # archive = lambda req: render_to_response('index.html', {'blog_list': BlogPost.objects.all()[:5]})
 

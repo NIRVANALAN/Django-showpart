@@ -1,0 +1,163 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag</title>
+    <style type="text/css">
+        #box1 {
+            width: 50px;
+            height: 50px;
+            background: lightcoral;
+            position: absolute;
+        }
+         #box2 {
+            width: 50px;
+            height: 50px;
+            background: lightcoral;
+            left:150px;
+            position: absolute;
+        }
+         #box3 {
+            width: 50px;
+            height: 50px;
+            background: lightcoral;
+            left:300px;
+            position: absolute;
+        }
+         #box4 {
+            width: 50px;
+            height: 50px;
+            background: lightcoral;
+            left:450px;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var t = [
+                { "name": "video", "x": 0, "y": 0, "id": 1 },
+                 { "name": "coffee", "x": 150, "y": 0, "id": 2 },
+                 { "name": "indoor", "x": 300, "y": 0, "id": 3 },
+                 { "name": "outdoor", "x": 450, "y": 0, "id": 4 },
+            ];
+            var box1 = document.getElementById("box1");
+            var box2 = document.getElementById("box2");
+            var box3 = document.getElementById("box3");
+            var box4 = document.getElementById("box4");
+            box1.onmousedown = function (event) {
+                // console.log(1);
+                /*�ٴε��ʱʹ��ͼ����Ȼ���Ǹ�λ�ã������Ե����ͼ����*/
+                var ol = event.clientX - box1.offsetLeft;
+                var ot = event.clientY - box1.offsetTop;
+                /*�����*/
+                document.onmousemove = function (event) {
+                    var left = event.clientX - ol;
+                    var top = event.clientY - ot;
+                    box1.style.left = left+"px";/*��ֵ*/
+                    box1.style.top = top + "px";
+                    t[0].x = left
+                    t[0].y = top
+                    console.log(t[0])
+                }
+                /*����ɿ�*/
+                document.onmouseup = function (event) {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+            }
+            box2.onmousedown = function (event) {
+                // console.log(1);
+                /*�ٴε��ʱʹ��ͼ����Ȼ���Ǹ�λ�ã������Ե����ͼ����*/
+                var ol = event.clientX - box2.offsetLeft;
+                var ot = event.clientY - box2.offsetTop;
+                /*�����*/
+                document.onmousemove = function (event) {
+                    var left = event.clientX - ol;
+                    var top = event.clientY - ot;
+                    box2.style.left = left + "px";/*��ֵ*/
+                    box2.style.top = top + "px";
+                    t[1].x = left
+                    t[1].y = top
+                    console.log(t[1])
+                }
+                /*����ɿ�*/
+                document.onmouseup = function (event) {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+            }
+            box3.onmousedown = function (event) {
+                // console.log(1);
+                /*�ٴε��ʱʹ��ͼ����Ȼ���Ǹ�λ�ã������Ե����ͼ����*/
+                var ol = event.clientX - box3.offsetLeft;
+                var ot = event.clientY - box3.offsetTop;
+                /*�����*/
+                document.onmousemove = function (event) {
+                    var left = event.clientX - ol;
+                    var top = event.clientY - ot;
+                    box3.style.left = left + "px";/*��ֵ*/
+                    box3.style.top = top + "px";
+                    t[2].x = left
+                    t[2].y = top
+                    console.log(t[2])
+                }
+                /*����ɿ�*/
+                document.onmouseup = function (event) {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+            }
+            box4.onmousedown = function (event) {
+                // console.log(1);
+                /*�ٴε��ʱʹ��ͼ����Ȼ���Ǹ�λ�ã������Ե����ͼ����*/
+                var ol = event.clientX - box4.offsetLeft;
+                var ot = event.clientY - box4.offsetTop;
+                /*�����*/
+                document.onmousemove = function (event) {
+                    var left = event.clientX - ol;
+                    var top = event.clientY - ot;
+                    box4.style.left = left + "px";/*��ֵ*/
+                    box4.style.top = top + "px";
+                    t[3].x = left
+                    t[3].y = top
+                    console.log(t[3])
+                }
+                /*����ɿ�*/
+                document.onmouseup = function (event) {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+            }
+            var btn = document.getElementById("btn");
+            //按钮点击
+            btn.onclick = function () {
+                alert("你点击了确定");
+                t = JSON.stringify(t);
+                localStorage.setItem("t", t);
+                var a = localStorage.getItem("t");//取回t变量
+                a = JSON.parse(a);
+                //var json_data = JSON.parse(storage.getItem("a"));
+                console.log(a)
+            }
+        }
+    </script>
+</head>
+
+<body style="height="520" width="933";">
+    
+    <div id="box1"><img src="{% static "main/images/photograph1.png" %}"></div>
+    <div id="box2"><img src="{% static "main/images/photograph1.png" %}"></div>
+    <div id="box3"><img src="{% static "main/images/photograph1.png" %}"></div>
+    <div id="box4"><img src="{% static "main/images/photograph1.png" %}"></div>
+    <div align="center" style="position:relative;top:450px">
+        <input type="button" value="确定" id="btn">
+        <a href="/main/trainers">
+        <input type="button" value="返回">
+        </a>
+    </div>
+
+    
+
+</body>
+</html>

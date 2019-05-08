@@ -5,8 +5,8 @@
 >>>>>>> github-master
 main/templates/main/__pycache__/
 main/templates/main/migrations/__pycache__/
-mysite2/__pycache__/urls.cpython-36.pyc
-mysite2/__pycache__/wsgi.cpython-36.pyc
+mysite2/__pycache__/
+mysite2/__pycache__/
 
 #main/static/
 #collected_static/
@@ -16,3 +16,14 @@ main/migrations/__pycache__/0007_auto_20180823_0908.cpython-36.pyc
 media/
 
 main/__pycache__/
+user/__pycache__/
+__pycache__/
+/api.md
+/test.py
+main/static/main/video/1.avi
+main/static/main/video/2.avi
+main/static/main/video/3.avi
+main/static/main/video/4.avi
+main/static/main/video/5.avi
+main/static/main/video/6.avi
+main/static/main/video/7.avi

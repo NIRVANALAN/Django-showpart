@@ -1,0 +1,29 @@
+{
+  "camera": [
+    {
+      "id": 3,
+      "name": "bGLfSTVjhguUjOt",
+      "x": 3,
+      "y": 3
+    },
+    {
+      "id": 2,
+      "name": "18SsnGDBlvLXFIi",
+      "x": 2,
+      "y": 2
+    },
+    {
+      "id": 1,
+      "name": "Y5ny8V5ytqAnDUb",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "id": 4,
+      "name": "Ll6wIIWVkYsyzcu",
+      "x": 4,
+      "y": 4
+    }
+  ],
+  "interval_time": 1
+}

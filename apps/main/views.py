@@ -56,6 +56,10 @@ def codes(request):
 	return render(request, "main/codes.html")
 
 
+def paint(request):
+	return render(request, 'main/paint.html')
+
+
 data = []
 
 
@@ -86,6 +90,9 @@ def track(request):
 			# logger.info(data_)
 			global data
 			data = eval(open('apps/main/res.txt').readline())
+			for i in data:
+				i['frame'] = '{}:{}'.format(int(i['frame'] / 30), int(2 * i['frame'] % 30))
+				pass
 			'''
 			test output
 			{"sequenceId": "20190508001", "cameraId": 1, "boxes": "[663, 71, 859, 696, 0]", "frame": 4110, "similarities": 0.6661713832802965}

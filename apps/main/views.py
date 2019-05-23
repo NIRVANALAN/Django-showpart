@@ -9,19 +9,20 @@ from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 import requests
-import logging
+# import logging
+import json
 from django.utils import timezone
 
 pic_upload_add = 'http://192.168.254.117:8806/picture/uploadAndFind'
-pic_upload_andFind = 'http://123.206.79.138:8806/picture/uploadAndFind'
+pic_upload_andFind = 'http://172.20.10.2:8806/picture/uploadAndFind'
 
 frame = 1
-sequenceId = '20181005001'
-cameraId = 1
+sequenceId = '20190508001'
+cameraId = 2
 
 # logging
-logger = logging.getLogger('django')
-logger.info('logger "django" start')
+# logger = logging.getLogger('django')
+# logger.info('logger "django" start')
 
 
 @login_required
@@ -60,7 +61,12 @@ def paint(request):
 	return render(request, 'main/paint.html')
 
 
-data = []
+data = [{"sequenceId": "20190508001", "cameraId": 2, "boxes": "[0, 0, 386, 1052, 0]", "frame": 2640,
+         "similarities": 0.7460789036139179,
+         "pic_path": "./data/Pictures/20190508001/2/2640.jpg"},
+        {"sequenceId": "20190508001", "cameraId": 2, "boxes": "[668, 111, 951, 1017, 0]", "frame": 2670,
+         "similarities": 0.8126308847975244,
+         "pic_path": "./data/Pictures/20190508001/2/2670.jpg"}]
 
 
 def track(request):
@@ -76,8 +82,8 @@ def track(request):
 			).save()
 			files = {'file': open('./Media/img/' + request.FILES.get('img').name, 'rb')}
 			# response = requests.post(pic_upload_andFind,
-			#                          data={'startFrame': 0, 'finishFrame': 4, 'sequenceId': sequenceId,
-			#                                'galleryCameraId': 1}, files=files)
+			#                          data={'startFrame': 0, 'finishFrame': 6000, 'sequenceId': sequenceId,
+			#                                'galleryCameraId': int(request.POST['camera'])}, files=files)
 			# response = requests.post(pic_upload_andFind)  # for test
 			
 			# response = requests.post(tmp_utl, data={
@@ -86,12 +92,12 @@ def track(request):
 			# 	'sequenceId': 20181005001,
 			# 	'galleryCameraId': 1
 			# })
-			# data_ = eval(eval(response.text)['data'])
-			# logger.info(data_)
 			global data
-			data = eval(open('apps/main/res.txt').readline())
+			# data = eval(eval(response.text)['data'])
+			# logger.info(data_)
+			# data = eval(open('apps/main/res.txt').readline())
 			for i in data:
-				i['frame'] = '{}:{}'.format(int(i['frame'] / 30), int(2 * i['frame'] % 30))
+				i['frame'] = '{}:{}'.format(int(i['frame'] / 30 // 60), int(i['frame'] / 30) % 60)
 				pass
 			'''
 			test output
@@ -103,6 +109,12 @@ def track(request):
 	return render(request, "main/track.html", {'form': form, 'data': data})
 
 
+def save_info(request):
+	if request.method == 'POST':
+		info = request.POST['cameraInfo']
+		info = json.load(info)
+		pass
+	pass
 # def file_down(request):
 # 	file = open('static/bm.mp4', 'rb')
 # 	response = FileResponse(file)

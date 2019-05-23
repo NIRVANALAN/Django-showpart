@@ -15,5 +15,6 @@ urlpatterns = [
 	path('trainers/', visuService),
 	path('codes/', codes),
 	path('track/', track),
-	path('success/', success)
+	path('success/', success),
+	path('save_info/', save_info)
 ]

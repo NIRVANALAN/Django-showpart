@@ -184,7 +184,7 @@
     <div class="demo-wrapper">
 
         <div class="heatmap" style="position: relative;">
-            <!--<img src="{% static "main/images/jiaju.jpg" %}" alt="" height="520" width="933">-->
+            <<img src="{% static "main/images/jiaju.jpg" %}" alt="" height="520" width="933">
         </div>
         <div class="timeline-wrapper">
             <button>play</button>
@@ -264,7 +264,8 @@
         //     this.id = id;
         // }
 
-        $.getJSON('{% static "visuService/json/info.json" %}', function (data) {
+
+        $.getJSON('{% static "main/json/info.json" %}', function (data) {
             // info = data;
             // info = $.extend(true, [], data["camera"]);
             $.each(data["camera"], function (i, item) {
@@ -301,7 +302,7 @@
     function extractCameraInfo() {
         var camera_info = [];
         $.ajaxSettings.async = false;
-        $.getJSON('{% static "visuService/json/info.json" %}', function (result) {
+        $.getJSON('{% static "main/json/info.json" %}', function (result) {
             $.each(result["camera"], function (index, info) {
                 camera_info.push(info);
             })
@@ -334,7 +335,7 @@
         {#    frame_points.push([point]);#}
 
 {#{% static "main/json/dotbook.json" %}#}
-        $.getJSON('{% static "visuService/json/dotbook.json" %}', function (data) {
+        $.getJSON('{% static "main/json/dotbook.json" %}', function (data) {
             var width = 940;
             var height = 600;
             for (var p in data) {

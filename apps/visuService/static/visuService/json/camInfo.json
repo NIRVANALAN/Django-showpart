@@ -1,0 +1,9 @@
+{
+  "camera": [
+    { "name": "video","x": 6.801, "y": 2.58, "id": 1 },
+    { "name": "coffee", "x": 1.99, "y": 0.53285, "id": 2 },
+    { "name": "indoor", "x": 3.1157, "y": 3.399609, "id": 3 },
+    { "name": "outdoor", "x": 0.78, "y": 2.25, "id": 4 }
+  ],
+  "interval_time": 1
+}

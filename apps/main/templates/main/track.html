@@ -123,30 +123,30 @@
 </div>
 <div class="content">
     <div id="videos"
-         style="text-align: center;position: relative;left: 30px;top: 50px; bottom: 30px; height: 550px; width: 55%;  float: left;">
-        <div id="select_video" style=" position: relative; bottom: 30px; ">
+         style="float:left;text-align: center;position: relative;left: 30px;top: 50px; bottom: 30px; height: 550px; width: 45%;">
+        <div id="select_video" style=" float: left;position: relative; bottom: 30px; margin-left: 300px;">
             <div style="">
                 <form action="">
                     <label for="selectCamera">selectCamera</label>
                     <select name="" id="selectCamera">
-                        <option value="{% static "main/video/muti.mp4" %}">Camera1</option>
-                        <option value="{% static "main/video/muti.mp4" %}">Camera2</option>
+                        <option value="{% static "main/video/4.mp4" %}">Camera1</option>
+                        <option value="{% static "main/video/2_lan.mp4" %}">Camera2</option>
                     </select>
                     <button type="button" onclick="switchVideo()">Choose</button>
                 </form>
             </div>
         </div>
         <div id="video" name="TrackVideo" style="float: left; ">
-            <video id="videoShow" width="960" height="540" controls="controls" src="{% static "main/video/muti.mp4" %}">
+            <video id="videoShow" width="860" height="440" controls="controls"
+                   src="{% static "main/video/2_lan.mp4" %}">
                 Your browser does not support video tag
             </video>
         </div>
-    </div>
-    <div id="track" style="float: right;position: relative; top: 40px; height: 550px; width: 40%; display:flex">
-        <div style="position: relative; margin: auto;border:1px solid #cee3e9;background:#f1f7f9" id="img_upload">
+        <div style="margin-left: 300px;float: left;position: relative; border:1px solid #cee3e9;background:#f1f7f9"
+             id="img_upload">
             <div style="margin-top:10px;border:1px solid #96c2f1;background:#eff7ff
 " id="img_form">
-                <h3 align="center">Upload</h3>
+                <h3 align="center">图片上传</h3>
                 <div style="float: left; position: relative; ">
                     <form action="/main/track/" method="POST" enctype='multipart/form-data'>
                         {% csrf_token %}
@@ -155,33 +155,42 @@
                         </table>
                         <div style="position: relative; right: 30px;">
                             <button value="Submit" type="submit" style="position: relative;left:50%;">Submit</button>
+                            <select name="camera" id="selectCamera">
+                                <option value="1">Camera1</option>
+                                <option value="2">Camera2</option>
+                            </select>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="track" style="float: right;position: relative; top: 40px; height: 550px; width: 40%; display:flex">
+
         {% if data %}
-            <div style="position: relative; top: 30px;margin: auto; background-color: #00BBD3" id="report_table">
-                <h3 align="center">Track Result</h3>
+            <div style="float:right;position: relative; top: 30px;margin: auto; background-color: #00BBD3"
+                 id="report_table">
+                <h3 align="center">检索结果</h3>
                 <div>
                     <table border="1" class="table">
                         {% if data %}
                             <tr>
-                                <td>SequenceId</td>
-                                <td>cameraId</td>
-                                <td>frame</td>
-                                <td>similarities</td>
+                                <td>序列</td>
+                                <td>镜头</td>
+                                <td>时间</td>
+                                <td>相似度</td>
                             </tr>
                         {% endif %}
 
                         {% for datum in data %}
-                            {% if forloop.counter < 10 %}
+                            {% if forloop.counter < 9 %}
                                 <tr>
                                     <td>{{ datum.sequenceId }}</td>
                                     <td>{{ datum.cameraId }}</td>
                                     <td>{{ datum.frame }}</td>
                                     <td>{{ datum.similarities }}</td>
                                 </tr>
+
                             {% endif %}
                         {% endfor %}
                     </table>

@@ -11,35 +11,40 @@
             background: lightcoral;
             position: absolute;
         }
-         #box2 {
+
+        #box2 {
             width: 50px;
             height: 50px;
             background: lightcoral;
-            left:150px;
+            left: 150px;
             position: absolute;
         }
-         #box3 {
+
+        #box3 {
             width: 50px;
             height: 50px;
             background: lightcoral;
-            left:300px;
+            left: 300px;
             position: absolute;
         }
-         #box4 {
+
+        #box4 {
             width: 50px;
             height: 50px;
             background: lightcoral;
-            left:450px;
+            left: 450px;
             position: absolute;
         }
     </style>
+    <script src="{% static "main/js/jquery-1.11.1.min.js" %}"></script>
+{#    <script src="{% static "main/js/jquery-1.11.1.min.serializejson.js" %}"></script>#}
     <script type="text/javascript">
         window.onload = function () {
-            var t = [
-                { "name": "video", "x": 0, "y": 0, "id": 1 },
-                 { "name": "coffee", "x": 150, "y": 0, "id": 2 },
-                 { "name": "indoor", "x": 300, "y": 0, "id": 3 },
-                 { "name": "outdoor", "x": 450, "y": 0, "id": 4 },
+            let t = [
+                {"name": "video", "x": 0, "y": 0, "id": 1},
+                {"name": "coffee", "x": 150, "y": 0, "id": 2},
+                {"name": "indoor", "x": 300, "y": 0, "id": 3},
+                {"name": "outdoor", "x": 450, "y": 0, "id": 4},
             ];
             var box1 = document.getElementById("box1");
             var box2 = document.getElementById("box2");
@@ -54,13 +59,12 @@
                 document.onmousemove = function (event) {
                     var left = event.clientX - ol;
                     var top = event.clientY - ot;
-                    box1.style.left = left+"px";/*��ֵ*/
+                    box1.style.left = left + "px";/*��ֵ*/
                     box1.style.top = top + "px";
                     t[0].x = left
                     t[0].y = top
                     console.log(t[0])
                 }
-                /*����ɿ�*/
                 document.onmouseup = function (event) {
                     document.onmousemove = null;
                     document.onmouseup = null;
@@ -71,7 +75,6 @@
                 /*�ٴε��ʱʹ��ͼ����Ȼ���Ǹ�λ�ã������Ե����ͼ����*/
                 var ol = event.clientX - box2.offsetLeft;
                 var ot = event.clientY - box2.offsetTop;
-                /*�����*/
                 document.onmousemove = function (event) {
                     var left = event.clientX - ol;
                     var top = event.clientY - ot;
@@ -81,7 +84,6 @@
                     t[1].y = top
                     console.log(t[1])
                 }
-                /*����ɿ�*/
                 document.onmouseup = function (event) {
                     document.onmousemove = null;
                     document.onmouseup = null;
@@ -89,10 +91,8 @@
             }
             box3.onmousedown = function (event) {
                 // console.log(1);
-                /*�ٴε��ʱʹ��ͼ����Ȼ���Ǹ�λ�ã������Ե����ͼ����*/
                 var ol = event.clientX - box3.offsetLeft;
                 var ot = event.clientY - box3.offsetTop;
-                /*�����*/
                 document.onmousemove = function (event) {
                     var left = event.clientX - ol;
                     var top = event.clientY - ot;
@@ -123,7 +123,6 @@
                     t[3].y = top
                     console.log(t[3])
                 }
-                /*����ɿ�*/
                 document.onmouseup = function (event) {
                     document.onmousemove = null;
                     document.onmouseup = null;
@@ -132,32 +131,39 @@
             var btn = document.getElementById("btn");
             //按钮点击
             btn.onclick = function () {
+                var info = document.getElementById("infoBtn");
+
                 alert("你点击了确定");
                 t = JSON.stringify(t);
                 localStorage.setItem("t", t);
-                var a = localStorage.getItem("t");//取回t变量
+                let a = localStorage.getItem("t");//取回t变量
                 a = JSON.parse(a);
                 //var json_data = JSON.parse(storage.getItem("a"));
-                console.log(a)
+                {#info.setAttribute("value", a);#}
+                console.log(a);
             }
         }
     </script>
 </head>
 
-<body style="height="520" width="933";">
-    
-    <div id="box1"><img src="{% static "main/images/photograph1.png" %}"></div>
-    <div id="box2"><img src="{% static "main/images/photograph1.png" %}"></div>
-    <div id="box3"><img src="{% static "main/images/photograph1.png" %}"></div>
-    <div id="box4"><img src="{% static "main/images/photograph1.png" %}"></div>
-    <div align="center" style="position:relative;top:450px">
-        <input type="button" value="确定" id="btn">
-        <a href="/main/trainers">
-        <input type="button" value="返回">
-        </a>
-    </div>
+<body style="height: 520px;width:933px;">
 
-    
+<div id="box1"><img src="{% static "main/images/photograph1.png" %}"></div>
+<div id="box2"><img src="{% static "main/images/photograph1.png" %}"></div>
+<div id="box3"><img src="{% static "main/images/photograph1.png" %}"></div>
+<div id="box4"><img src="{% static "main/images/photograph1.png" %}"></div>
+<div align="center" style="position:relative;top:450px">
+    <form action="/main/save_info/" method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <input type="submit" value="确定" id="btn">
+        <label for="infoBtn"></label><input type="text" name="cameraInfo" id="infoBtn">
+    </form>
+
+    <a href="/main/trainers">
+        <input type="button" value="返回">
+    </a>
+</div>
+
 
 </body>
 </html>

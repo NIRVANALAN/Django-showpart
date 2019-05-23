@@ -21,10 +21,12 @@ from django.conf import settings
 from django.contrib.staticfiles import views
 import main.urls
 import user.urls
+import visuService.urls
 import user.views as user_views
 
 urlpatterns = [path('admin/', admin.site.urls),
                path('main/', include(main.urls)),
+               path('visuService/', include(visuService.urls)),
                path('account/', include(user.urls)),
                path('', user_views.login),
                re_path(r'^static/(?P<path>.*)$', views.serve)]
